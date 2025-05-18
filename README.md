@@ -20,6 +20,14 @@ Este projeto propõe uma solução de **gamificação** para engajar os colabora
 A ideia é transformar metas em desafios motivadores, alinhando o desempenho da equipe com os objetivos da empresa.
 
 ---
+## 🚧 Em desenvolvimento
+
+- ✔️ Documentação
+- 🔲 Modelagem MER
+- 🔲 Protótipos no Figma
+- 🔲 Código
+
+---
 
 ## 🚀 Tecnologias utilizadas
 
