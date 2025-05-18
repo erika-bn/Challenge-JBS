@@ -23,8 +23,10 @@ A ideia é transformar metas em desafios motivadores, alinhando o desempenho da 
 
 ## 🚀 Tecnologias utilizadas
 
-- [ ] (Preencha aqui as linguagens, frameworks ou plataformas utilizadas, como por exemplo: Python, Node.js, Firebase, etc.)
+- HTML  
+- Figma (para prototipação das telas)
 
+<!--
 ## 💡 Como rodar o projeto
 
 ```bash
@@ -35,4 +37,3 @@ git clone https://github.com/erika-bn/Challenge-JBS.git
 cd Challenge-JBS
 
 # (Adicione aqui instruções de execução, se necessário)
-
