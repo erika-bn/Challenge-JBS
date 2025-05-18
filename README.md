@@ -1,5 +1,5 @@
 <div align="center">
-<a href="https://github.com/erika-bn" target="_blank"><img align="right" width="150px"  /></a>
+<a href="https://github.com/erika-bn" target="_blank"><img align="right" width="150px" src="https://github.com/erika-bn/Challenge-JBS/blob/main/logo%20jbs.webp" /></a>
 <h1>Challenge JBS - 1º Etapa</h1>
 <h3>ANÁLISE E DESENVOLVIMENTO DE SISTEMAS - FIAP</h3>
 </div>
