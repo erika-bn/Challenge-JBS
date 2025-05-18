@@ -1,11 +1,13 @@
 <div align="center">
   <h1 style="display: inline-block; vertical-align: middle; margin-right: 10px;">
-    Challenge JBS - 1º Etapa
-  </h1>
+     </h1>
   <img src="https://raw.githubusercontent.com/erika-bn/Challenge-JBS/main/assets/logo-jbs.webp" alt="Logo JBS" width="150" style="display: inline-block; vertical-align: middle;" />
   <h3>ANÁLISE E DESENVOLVIMENTO DE SISTEMAS - FIAP ON</h3>
+    Challenge JBS - 1º Etapa
+  
+  <h3>ANÁLISE E DESENVOLVIMENTO DE SISTEMAS - FIAP ON</h3>
 </div>
-![Logo JBS](https://raw.githubusercontent.com/erika-bn/Challenge-JBS/main/assets/logo-jbs.webp)
+
 
 ---
 
