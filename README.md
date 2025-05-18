@@ -1,6 +1,6 @@
 <div align="center">
   <img src="https://github.com/erika-bn/Challenge-JBS/blob/main/logo%20jbs.webp" width="180px" alt="Logo JBS" />
-  
+
   <h1>Challenge JBS - 1º Etapa</h1>
   <h3>ANÁLISE E DESENVOLVIMENTO DE SISTEMAS - FIAP ON</h3>
 </div>
@@ -37,3 +37,11 @@ git clone https://github.com/erika-bn/Challenge-JBS.git
 cd Challenge-JBS
 
 # (Adicione aqui instruções de execução, se necessário)
+```
+-->
+
+---
+
+## 👩‍💻 Integrantes
+
+- Erika B. N.
