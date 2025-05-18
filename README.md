@@ -42,6 +42,3 @@ cd Challenge-JBS
 
 ---
 
-## 👩‍💻 Integrantes
-
-- Erika B. N.
