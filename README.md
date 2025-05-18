@@ -18,6 +18,7 @@ Este projeto propõe uma solução de **gamificação** para engajar os colabora
 - 🧠 Personalização do atendimento
 
 A ideia é transformar metas em desafios motivadores, alinhando o desempenho da equipe com os objetivos da empresa.
+👉 Para saber mais sobre o desafio, clique [**AQUI**](https://github.com/erika-bn/Challenge-JBS/blob/main/docs/Challenge%20JBS_SWIFT.pdf)
 
 ---
 ## 🚧 Em desenvolvimento
