@@ -5,6 +5,7 @@
   <img src="https://raw.githubusercontent.com/erika-bn/Challenge-JBS/main/assets/logo-jbs.webp" alt="Logo JBS" width="150" style="display: inline-block; vertical-align: middle;" />
   <h3>ANÁLISE E DESENVOLVIMENTO DE SISTEMAS - FIAP ON</h3>
 </div>
+![Logo JBS](https://raw.githubusercontent.com/erika-bn/Challenge-JBS/main/assets/logo-jbs.webp)
 
 ---
 
