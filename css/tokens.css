@@ -1,0 +1,23 @@
+:root {
+    --color-primary: #FF6A00;
+    /* laranja principal do botão */
+    --color-primary-dark: #F15A00;
+    /* laranja escuro (hover)     */
+    --color-bg-start: #FF8A00;
+    /* topo do gradiente          */
+    --color-bg-end: #FFC085;
+    /* base do gradiente          */
+    --color-pill: #FF6A00;
+    /* pílulas topo/rodapé        */
+    --color-input: #F3E1CF;
+    /* fundo claro dos inputs     */
+    --color-white: #FFFFFF;
+    --radius-pill: 999px;
+    --radius-lg: 16px;
+    --shadow-sm: 0 8px 24px rgba(0, 0, 0, .12);
+    --space-1: .25rem;
+    --space-2: .5rem;
+    --space-3: 1rem;
+    --space-4: 1.5rem;
+    --space-6: 2.5rem;
+}
