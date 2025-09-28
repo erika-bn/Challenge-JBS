@@ -34,6 +34,8 @@ export function requireAuth() {
     const auth = localStorage.getItem('auth');
     if (!auth) {
         window.location.href = '../index.html';
+        window.location.href = './profile.html';
+
         return false;
     }
     return true;
