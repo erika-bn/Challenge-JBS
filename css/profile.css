@@ -1,11 +1,10 @@
-/* ===== base / fundo igual ao login ===== */
 .profile {
   min-height: 100vh;
   background: linear-gradient(180deg, var(--color-bg-start), var(--color-bg-end));
   overflow-x: hidden;
 }
 
-/* ===== TOPO: largo, sem encostar no avatar ===== */
+
 .profile__top {
   position: relative;
   height: clamp(160px, 22vw, 240px);
@@ -34,7 +33,7 @@
   color: var(--color-white);
 }
 
-/* ===== CARD (uma coluna em qualquer viewport) ===== */
+
 .profile__card {
   width: 100%;
   max-width: min(92vw, 560px);
@@ -42,7 +41,7 @@
   margin-inline: auto;
 }
 
-/* ===== AVATAR: afastado do topo (sem sobrepor) ===== */
+
 .profile__avatar-wrap {
   width: max-content;
   margin: clamp(1rem, 3vw, 2rem) auto clamp(1rem, 3vw, 2rem);
@@ -73,7 +72,7 @@
 }
 .profile__avatar-btn:hover { filter: brightness(.95); }
 
-/* ===== CAMPOS: estilo do login (pill + foco laranja) ===== */
+
 .profile__group + .profile__group { margin-top: clamp(.75rem, 2.5vw, 1.25rem); }
 
 .profile__label {
@@ -97,7 +96,7 @@
   transition: box-shadow .2s ease, background-color .2s ease;
 }
 .profile__field:hover {
-  background-color: #efdbc7; /* leve realce no hover */
+  background-color: #efdbc7; 
 }
 .profile__field:focus-within {
   box-shadow: inset 0 0 0 2px var(--color-primary), 0 0 0 .25rem rgba(255,106,0,.18);
@@ -105,7 +104,7 @@
   outline: 0;
 }
 
-/* remove borda preta/chrome default e evita quebra */
+
 .profile__input {
   flex: 1 1 auto;
   min-width: 0;
@@ -119,7 +118,7 @@
 }
 .profile__input::placeholder { color: rgba(0,0,0,.65); }
 
-/* ===== CTA Mudar Senha ===== */
+
 .profile__hint {
   color: var(--color-primary);
   font-weight: 600;
@@ -140,15 +139,13 @@
 .profile__btn:hover   { background: var(--color-white); box-shadow: 0 10px 28px rgba(0,0,0,.14); }
 .profile__btn:active  { transform: translateY(1px); }
 
-/* acessibilidade */
+
 .visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 
-/* ==== FIT-TO-VIEWPORT (sem rolagem) ==== */
 
-/* usa a altura "real" do navegador mobile (svh) */
 .profile { min-height: 100svh; }
 
-/* topo e avatar menores e proporcionais à altura da tela */
+
 .profile__top {
   height: clamp(110px, 18svh, 170px);
   padding-bottom: clamp(.5rem, 1.6svh, 1rem);
@@ -158,7 +155,7 @@
 
 .profile__title { font-size: clamp(1.1rem, 2.2svh, 1.6rem); }
 
-/* o avatar não encosta no topo e ocupa menos altura */
+
 .profile__avatar-wrap { margin: clamp(.5rem, 2svh, 1.25rem) auto; }
 .profile__avatar {
   width: clamp(72px, 12svh, 112px);
@@ -168,13 +165,13 @@
   width: 32px; height: 32px; left: calc(100% - 32px); top: -32px;
 }
 
-/* container mais compacto */
+
 .profile__card {
   max-width: min(88vw, 520px);
   padding: clamp(.5rem, 2svh, 1.25rem) clamp(.75rem, 3vw, 1.25rem);
 }
 
-/* campos (altura/padding/fonte mais contidos) */
+
 .profile__group + .profile__group { margin-top: clamp(.5rem, 1.6svh, .9rem); }
 
 .profile__label {
@@ -192,7 +189,7 @@
   font-size: clamp(.95rem, 1.8svh, 1.05rem);
 }
 
-/* texto e botão "mudar senha" mais enxutos */
+
 .profile__hint { margin: clamp(.6rem, 2svh, 1rem) 0 .5rem; }
 
 .profile__btn {
@@ -200,7 +197,7 @@
   font-size: clamp(.95rem, 1.8svh, 1.05rem);
 }
 
-/* ===== Ajuste por ALTURA (útil em notebooks/celulares pequenos) ===== */
+
 @media (max-height: 740px) {
   .profile__top { height: clamp(100px, 16svh, 150px); }
   .profile__avatar { width: 88px; height: 88px; }
@@ -214,12 +211,12 @@
   .profile__btn { padding: .6rem .9rem; }
 }
 
-/* ===== Desktop grande: centraliza e evita “espaço morto” ===== */
+
 @media (min-width: 992px) {
   .profile__card { max-width: 520px; }
 }
 
-/* botão remover pequenininho no avatar */
+
 .profile__avatar-remove {
   position: absolute;
   left: -4px;                 /* fica no canto inferior esquerdo */
@@ -238,5 +235,5 @@
 }
 .profile__avatar-remove:hover { filter: brightness(.96); }
 
-/* opcional: cursor de mão na foto para abrir seletor */
+
 .profile__avatar { cursor: pointer; }
