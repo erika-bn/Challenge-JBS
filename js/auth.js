@@ -23,7 +23,7 @@ function enableBootstrapValidation() {
         const payload = { email, ts: Date.now() };
         localStorage.setItem('auth', JSON.stringify(payload));
 
-        // Redireciona para a página correta após login
+        // Redireciona para a página principal (home) após autenticação
         window.location.href = './pages/home.html';
     });
 }
@@ -39,3 +39,4 @@ export function requireAuth() {
     }
     return true;
 }
+
