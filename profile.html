@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Editar Perfil</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/tokens.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/profile.css">
+</head>
+
+<body>
+  <main class="profile">
+
+    <header class="profile__top">
+      <button class="profile__back" onclick="window.location.href='./index.html'" aria-label="Voltar">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <h1 class="profile__title">Editar Perfil</h1>
+    </header>
+
+    <section class="profile__card container">
+      
+     <div class="profile__avatar-wrap">
+  <img id="avatarPreview" class="profile__avatar" src="./assets/img/user-placeholder.png" alt="Sua foto">
+
+  
+  <input id="avatarInput" type="file" accept="image/*" capture="user" class="visually-hidden">
+
+  
+  <label for="avatarInput" class="profile__avatar-btn" title="Alterar foto">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+      <path d="M12 5l1.8 2H17a2 2 0 012 2v7a2 2 0 01-2 2H7a2 2 0 01-2-2V9a2 2 0 012-2h3.2L12 5zm0 3.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z" fill="currentColor"/>
+    </svg>
+  </label>
+
+  
+  <button type="button" id="avatarRemove" class="profile__avatar-remove" title="Remover foto" aria-label="Remover foto">
+    <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+      <path d="M16 8l-8 8M8 8l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+</div>
+
+    
+      <div class="profile__group">
+        <label class="profile__label" for="nome">Nome Completo</label>
+        <div class="profile__field">
+          <input id="nome" type="text" class="profile__input" value="Carlos Henrique Souza" autocomplete="name">
+        </div>
+      </div>
+
+      <div class="profile__group">
+        <label class="profile__label" for="email">E-mail</label>
+        <div class="profile__field">
+          <input id="email" type="email" class="profile__input" value="carlos.souza@gmail.com"
+                 list="emails-sugeridos" autocomplete="email">
+          <datalist id="emails-sugeridos">
+            <option value="carlos.souza@gmail.com"></option>
+            <option value="carlos.h.souza@outlook.com"></option>
+            <option value="carlos.souza@yahoo.com"></option>
+          </datalist>
+        </div>
+      </div>
+
+      <div class="profile__group">
+        <label class="profile__label" for="cel">Celular</label>
+        <div class="profile__field">
+          <input id="cel" type="tel" class="profile__input" value="(11) 98765-4321" autocomplete="tel">
+        </div>
+      </div>
+
+      <p class="profile__hint text-center">Quer mudar sua senha?</p>
+      <button class="profile__btn" type="button" onclick="changePassword()">Mudar senha</button>
+      <button id="saveProfileBtn" class="btn btn-lg w-100 login__btn" type="button">Salvar</button>
+    </section>
+  </main>
+
+ <script>
+  
+  const LS_KEY_AVATAR = 'avatarDataUrl';
+  const LS_KEY_PROFILE = 'profileData';
+  const PLACEHOLDER = './assets/img/user-placeholder.png';
+
+  
+  const fileInput   = document.getElementById('avatarInput');
+  const avatarImg   = document.getElementById('avatarPreview');
+  const btnRemove   = document.getElementById('avatarRemove');
+  const btnSave     = document.getElementById('saveProfileBtn');
+
+  const inputNome   = document.getElementById('nome');
+  const inputEmail  = document.getElementById('email');
+  const inputCel    = document.getElementById('cel');
+
+
+  const savedAvatar = localStorage.getItem(LS_KEY_AVATAR);
+  avatarImg.src = savedAvatar || PLACEHOLDER;
+
+  
+  const savedProfile = JSON.parse(localStorage.getItem(LS_KEY_PROFILE) || '{}');
+  if (savedProfile.nome)  inputNome.value  = savedProfile.nome;
+  if (savedProfile.email) inputEmail.value = savedProfile.email;
+  if (savedProfile.cel)   inputCel.value   = savedProfile.cel;
+
+ 
+  avatarImg.addEventListener('click', () => fileInput?.click());
+
+  
+  fileInput?.addEventListener('change', async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Arquivo muito grande. Escolha até 5MB.');
+      return;
+    }
+
+    try {
+      const dataUrl = await resizeAndCropToSquare(file, 256);
+      avatarImg.src = dataUrl;
+      localStorage.setItem(LS_KEY_AVATAR, dataUrl);
+    } catch (err) {
+      console.error(err);
+      alert('Erro ao processar imagem.');
+    } finally {
+      fileInput.value = '';
+    }
+  });
+
+  
+  btnRemove?.addEventListener('click', () => {
+    localStorage.removeItem(LS_KEY_AVATAR);
+    avatarImg.src = PLACEHOLDER;
+  });
+
+ 
+  btnSave?.addEventListener('click', () => {
+    const nome  = inputNome.value.trim();
+    const email = inputEmail.value.trim();
+    const cel   = inputCel.value.trim();
+
+    
+    if (!nome)  return alert('Informe seu nome.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return alert('Informe um e-mail válido.');
+    if (cel.length < 8) return alert('Informe um celular válido.');
+
+    const data = { nome, email, cel };
+    localStorage.setItem(LS_KEY_PROFILE, JSON.stringify(data));
+
+    
+    alert('Perfil salvo com sucesso!');
+  });
+
+ 
+  function loadImage(file) {
+    return new Promise((resolve, reject) => {
+      const i = new Image();
+      i.onload = () => resolve(i);
+      i.onerror = reject;
+      i.src = URL.createObjectURL(file);
+    });
+  }
+
+  async function resizeAndCropToSquare(file, size = 256) {
+    const image = await loadImage(file);
+    const srcSize = Math.min(image.width, image.height);
+    const sx = (image.width - srcSize) / 2;
+    const sy = (image.height - srcSize) / 2;
+
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = size;
+    canvas.height = size;
+    ctx.drawImage(image, sx, sy, srcSize, srcSize, 0, 0, size, size);
+
+    let dataUrl = '';
+    try {
+      dataUrl = canvas.toDataURL('image/webp', 0.9);
+    } catch {
+      dataUrl = canvas.toDataURL('image/jpeg', 0.9);
+    }
+    return dataUrl;
+  }
+
+ 
+  function changePassword() {
+    alert('Aqui você pode abrir um modal para troca de senha.');
+  }
+  window.changePassword = changePassword;
+</script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
