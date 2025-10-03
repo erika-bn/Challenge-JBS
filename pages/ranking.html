@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +8,26 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="../css/profile.css">
   <link rel="stylesheet" href="../css/ranking.css">
 </head>
+
 <body class="bg-light">
 
-  <!-- Topo com faixa -->
-  <header class="ranking-header">
-    <h2>Ranking</h2>
-  </header>
-
-  <!-- Botão para voltar -->
-  <header class="ranking-top">
-    <button class="botão-voltar">
-      <img src="https://img.icons8.com/ios-glyphs/30/808080/chevron-left.png" alt="Voltar">
+  <!-- Header com pílula igual ao home -->
+  <header class="dash-header text-center position-relative">
+    <button class="profile__back" onclick="window.location.href='./home.html'" aria-label="Voltar">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
     </button>
+    <div class="dash-header__pill">
+      <h1 class="dash-header__title m-0">Ranking</h1>
+    </div>
   </header>
 
   <main class="ranking">
@@ -37,7 +44,7 @@
 
       <div class="place first">
         <div class="avatar">
-          <img src="../assets/img/avatar1.png" alt="1º lugar">
+          <img id="firstAvatar" src="../assets/img/avatar1.png" alt="1º lugar">
           <img class="crown" src="../assets/img/coroa-ouro.png" alt="Coroa ouro">
         </div>
         <span class="name">Carlos Henrique</span>
@@ -59,28 +66,45 @@
     <!-- Lista do top 4 em diante -->
     <section class="ranking-lista">
       <ul>
-        <li><span class="position">4.</span><img src="../assets/img/icon.png" alt><span class="name">Francisco Pinto</span></li>
-        <li><span class="position">5.</span><img src="../assets/img/icon.png" alt><span class="name">Patroncio Ribeiro</span></li>
-        <li><span class="position">6.</span><img src="../assets/img/icon.png" alt><span class="name">Mariana Costa</span></li>
-        <li><span class="position">7.</span><img src="../assets/img/icon.png" alt><span class="name">Gustavo Carvalho</span></li>
-        <li><span class="position">8.</span><img src="../assets/img/icon.png" alt><span class="name">Cleydy Lima</span></li>
-        <li><span class="position">9.</span><img src="../assets/img/icon.png" alt><span class="name">Antonieta Lopez</span></li>
-        <li><span class="position">10.</span><img src="../assets/img/icon.png" alt><span class="name">Jurandi Menezes</span></li>
-        <li><span class="position">11.</span><img src="../assets/img/icon.png" alt><span class="name">Luiz Sucha</span></li>
-        <li><span class="position">12.</span><img src="../assets/img/icon.png" alt><span class="name">Flavio Gonzalvez</span></li>
-        <li><span class="position">13.</span><img src="../assets/img/icon.png" alt><span class="name">Ana Clara Machado</span></li>
-        <li><span class="position">14.</span><img src="../assets/img/icon.png" alt><span class="name">Matias Lima</span></li>
-        <li><span class="position">15.</span><img src="../assets/img/icon.png" alt></span> <span class="name">Camilo Freitas</span></li>
-        <li><span class="position">16.</span><img src="../assets/img/icon.png" alt></span> <span class="name">Leonardo Alonso</span></li>
-        <li><span class="position">17.</span><img src="../assets/img/icon.png" alt></span> <span class="name">Brian Luis</span></li>
-        <li><span class="position">18.</span><img src="../assets/img/icon.png" alt></span> <span class="name">Marcela Cruz</span></li>
-        <li><span class="position">19.</span><img src="../assets/img/icon.png" alt></span> <span class="name">Paulo Dias</span></li>
-        <li><span class="position">20.</span><img src="../assets/img/icon.png" alt></span> <span class="name">Michelle Ramirez</span></li>
+        <li><span class="position">4.</span><img src="../assets/img/icon.png" alt><span class="name">Francisco
+            Pinto</span></li>
+        <li><span class="position">5.</span><img src="../assets/img/icon.png" alt><span class="name">Patroncio
+            Ribeiro</span></li>
+        <li><span class="position">6.</span><img src="../assets/img/icon.png" alt><span class="name">Mariana
+            Costa</span></li>
+        <li><span class="position">7.</span><img src="../assets/img/icon.png" alt><span class="name">Gustavo
+            Carvalho</span></li>
+        <li><span class="position">8.</span><img src="../assets/img/icon.png" alt><span class="name">Cleydy Lima</span>
+        </li>
+        <li><span class="position">9.</span><img src="../assets/img/icon.png" alt><span class="name">Antonieta
+            Lopez</span></li>
+        <li><span class="position">10.</span><img src="../assets/img/icon.png" alt><span class="name">Jurandi
+            Menezes</span></li>
+        <li><span class="position">11.</span><img src="../assets/img/icon.png" alt><span class="name">Luiz Sucha</span>
+        </li>
+        <li><span class="position">12.</span><img src="../assets/img/icon.png" alt><span class="name">Flavio
+            Gonzalvez</span></li>
+        <li><span class="position">13.</span><img src="../assets/img/icon.png" alt><span class="name">Ana Clara
+            Machado</span></li>
+        <li><span class="position">14.</span><img src="../assets/img/icon.png" alt><span class="name">Matias Lima</span>
+        </li>
+        <li><span class="position">15.</span><img src="../assets/img/icon.png" alt></span> <span class="name">Camilo
+            Freitas</span></li>
+        <li><span class="position">16.</span><img src="../assets/img/icon.png" alt></span> <span class="name">Leonardo
+            Alonso</span></li>
+        <li><span class="position">17.</span><img src="../assets/img/icon.png" alt></span> <span class="name">Brian
+            Luis</span></li>
+        <li><span class="position">18.</span><img src="../assets/img/icon.png" alt></span> <span class="name">Marcela
+            Cruz</span></li>
+        <li><span class="position">19.</span><img src="../assets/img/icon.png" alt></span> <span class="name">Paulo
+            Dias</span></li>
+        <li><span class="position">20.</span><img src="../assets/img/icon.png" alt></span> <span class="name">Michelle
+            Ramirez</span></li>
       </ul>
     </section>
   </main>
 
+  <script src="../js/ranking.js" defer></script>
 </body>
+
 </html>
-
-

@@ -21,17 +21,27 @@
 .profile__title {
   margin: 0;
   font-weight: 700;
-  font-size: clamp(1.25rem, 2.2vw + .6rem, 2rem);
 }
 
+/* botão de voltar (seta) usado em header/páginas */
 .profile__back {
   position: absolute;
   left: clamp(.5rem, 2vw, 1.25rem);
-  background: var(--color-white);
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
   border: 0;
-  border: 0;
-  padding: .25rem;
+  padding: .35rem;
+  display: grid;
+  place-items: center;
   cursor: pointer;
+  color: var(--color-primary);
+  box-shadow: none;
+  z-index: 50;
+}
+
+/* quando usado dentro do header com a pílula laranja, a seta fica branca para contraste */
+.dash-header .profile__back {
   color: var(--color-primary);
 }
 
