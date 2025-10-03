@@ -1,159 +1,215 @@
-:root{
-  --orange:#ff7a00;
-  --soft:#ffd9c6;
-  --bg:#fff8f3;
-  --accent:#ff6a00;
+:root {
+  --orange: #ff7a00;
+  --soft: #ffd9c6;
+  --bg: #fff8f3;
+  --accent: #ff6a00;
 }
 
-*{box-sizing:border-box}
-body{
-  background: linear-gradient(180deg, #fff8f3 0%, #fff2ea 60%);
+* {
+  box-sizing: border-box
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  /* usar o fundo branco padrão das outras páginas */
+  background: var(--color-white, #ffffff);
   font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  color:#333;
-  min-height:100vh;
-  margin:0;
+  color: #333;
+  min-height: 100%;
+  margin: 0;
+  /* remover rolagem da página inteira para a tela de flashcards */
+  overflow: hidden;
 }
 
 /* botão achatado (oval “squashed”) */
 .title-wrap {
   margin-top: 10px;
-  text-align: center; /* centra na tela */
+  text-align: center;
+  /* centra na tela */
 }
 
 .title {
-   background-color: #FF6A00;
-    color: white;
-    text-align: center;
-    padding: 15px 0;
-    border-bottom-left-radius: 50% 100px;
-    border-bottom-right-radius: 50% 100px;
-    width: 450px;
-    margin: 0 auto;
+  background-color: #FF6A00;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  border-bottom-left-radius: 50% 100px;
+  border-bottom-right-radius: 50% 100px;
+  width: 450px;
+  margin: 0 auto;
 }
+
 /* cena do cartão */
-.flashcard-scene{
-  width: 320px;
-  height: 480px;
-  position:relative;
-  margin-top:12px;
+.flashcard-scene {
+  /* tornar a cena responsiva e caber na viewport sem causar scroll da página */
+  width: min(420px, 92vw);
+  height: min(560px, 65vh);
+  position: relative;
+  margin-top: 0;
+  z-index: 2;
+}
+
+/* container principal: ocupar viewport restante abaixo do header */
+main.container {
+  height: calc(100vh - 100px);
+  /* considera header ~80px + espaçamento */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* garantir espaço abaixo do header/pílula para não cobrir o cartão */
+  padding-top: 80px;
+  padding-bottom: 0;
 }
 
 /* setas laterais */
-.nav-arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  font-size:26px;
-  color:var(--orange);
-  user-select:none;
-  cursor:pointer;
-  width:36px;
-  height:36px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 26px;
+  color: var(--orange);
+  user-select: none;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.nav-left{ left:-48px; }
-.nav-right{ right:-48px; }
+
+.nav-left {
+  left: -48px;
+}
+
+.nav-right {
+  right: -48px;
+}
 
 /* cartão principal */
-.flashcard{
-  width:100%;
-  height:100%;
-  background:white;
-  border-radius:18px;
-  border:2px solid var(--orange);
-  box-shadow: 0 6px 20px rgba(255,122,0,0.08);
-  position:absolute;
-  left:0;
-  top:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-start;
-  padding:10px 12px 18px;
-  transition:transform 300ms ease, opacity 300ms ease;
-  touch-action:none; /* pointer events touch */
+.flashcard {
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 18px;
+  border: 2px solid var(--orange);
+  box-shadow: 0 6px 20px rgba(255, 122, 0, 0.08);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 12px 10px 12px;
+  transition: transform 300ms ease, opacity 300ms ease;
+  touch-action: none;
+  /* pointer events touch */
+  overflow: hidden;
 }
 
 /* cartão de trás (efeito pilha) */
-.flashcard.back{
+.flashcard.back {
   transform: translateY(18px);
-  left:8px;
+  left: 8px;
   width: calc(100% - 8px);
   height: calc(100% - 8px);
-  border-radius:18px;
-  border:1px solid rgba(255,122,0,0.15);
-  background: linear-gradient(180deg, rgba(255,240,230,0.8), rgba(255,245,240,0.7));
-  z-index:0;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 122, 0, 0.08);
+  /* reduzir intensidade para evitar película/cobertura do cartão principal */
+  background: linear-gradient(180deg, rgba(255, 245, 240, 0.24), rgba(255, 245, 240, 0.12));
+  z-index: 1;
 }
 
 /* botão fechar (x) */
-.btn-close{
+.btn-close {
   background: none;
   border: none;
-  width:28px;
-  height:28px;
-  color:#bfbfbf;
+  width: 28px;
+  height: 28px;
+  color: #bfbfbf;
 }
 
 /* imagem do cartão */
-.card-image{
-  width:76%;
-  height:120px;
-  margin-top:6px;
-  border-radius:8px;
-  background:var(--soft);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:var(--orange);
-  font-weight:600;
+.card-image {
+  width: 70%;
+  height: 88px;
+  margin-top: 6px;
+  border-radius: 8px;
+  background: var(--soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--orange);
+  font-weight: 600;
 }
 
 /* pergunta */
 .question {
-  margin-top: 8px;
-  margin-bottom: 12px; 
+  margin: 6px 0 8px;
   color: var(--orange);
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 600;
   text-align: center;
 }
 
 /* respostas */
-.answers{ margin-top: 12px;
-  gap: 10px;
-  position: absolute;
-  left: 10px;
-  bottom: 20px;
+.answers {
+  margin-top: 10px;
+  gap: 8px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 6px;
 }
-.answer-btn{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  border:none;
-  margin:8px 0;
-  background:var(--orange);
-  color:white;
-  font-weight:700;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  user-select:none;
+
+.answer-btn {
+  width: 86%;
+  max-width: 300px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  margin: 6px 0;
+  background: var(--orange);
+  color: white;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
 }
 
 /* progresso */
-.progress-wrap .progress-box{
-  background: linear-gradient(180deg, rgba(255,140,30,0.18), rgba(255,120,40,0.12));
-  border-radius:12px;
-  box-shadow: 0 6px 20px rgba(255,120,0,0.06);
+.progress-wrap .progress-box {
+  background: linear-gradient(180deg, rgba(255, 140, 30, 0.18), rgba(255, 120, 40, 0.12));
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(255, 120, 0, 0.06);
 }
-.progress-percent{
-  font-size:24px;
-  color:white;
-  text-shadow: 0 1px 0 rgba(0,0,0,0.08);
+
+.progress-percent {
+  font-size: 24px;
+  color: white;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
 }
-.progress{ height:10px; background:rgba(255,255,255,0.6); border-radius:10px; overflow:hidden; }
-.progress-bar{ background: linear-gradient(90deg, var(--orange), var(--accent)); height:100%; transition:width 300ms ease; }
+
+.progress {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, var(--orange), var(--accent));
+  height: 100%;
+  transition: width 300ms ease;
+}

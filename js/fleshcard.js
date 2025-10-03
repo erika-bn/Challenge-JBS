@@ -13,10 +13,10 @@ let cardsIndex = 0;
 
 // deck de exemplo 
 const deck = [
-  { imgText: 'Imagem 1', question: 'Qual é a cor do céu?', answers: ['A', 'B', 'C', 'D'] },
-  { imgText: 'Imagem 2', question: 'Quantos pés tem um cachorro?', answers: ['A', 'B', 'C', 'D'] },
-  { imgText: 'Imagem 3', question: 'Quem descobriu o Brasil?', answers: ['A', 'B', 'C', 'D'] },
-  { imgText: 'Imagem 4', question: 'Qual é 2 + 2?', answers: ['A', 'B', 'C', 'D'] }
+  { imgText: 'Imagem 1', question: 'Qual é o nome do fundador da Swift e o que ele inovou na indústria de carnes?', answers: ['A', 'B', 'C', 'D'] },
+  { imgText: 'Imagem 2', question: 'Onde foi inaugurada a primeira loja sustentável da Swift e o que a torna especial?', answers: ['A', 'B', 'C', 'D'] },
+  { imgText: 'Imagem 3', question: 'Quantos pontos de venda a Swift possui atualmente no Brasil?', answers: ['A', 'B', 'C', 'D'] },
+  { imgText: 'Imagem 4', question: 'Qual é o principal objetivo da Swift em relação à experiência de compra do cliente?', answers: ['A', 'B', 'C', 'D'] }
 ];
 
 function loadCard(idx){
