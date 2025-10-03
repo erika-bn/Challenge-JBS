@@ -1,8 +1,8 @@
 const fileInput = document.getElementById('avatarInput');
-const img       = document.getElementById('avatarPreview');
-const removeBtn = document.getElementById('removeAvatarBtn');
-const LS_KEY    = 'avatarDataUrl';
-const PLACEHOLDER = './assets/img/user-placeholder.png';
+const img = document.getElementById('avatarPreview');
+const removeBtn = document.getElementById('avatarRemove');
+const LS_KEY = 'avatarDataUrl';
+const PLACEHOLDER = '../assets/img/user-placeholder.png';
 
 
 const saved = localStorage.getItem(LS_KEY);
@@ -11,23 +11,48 @@ img.src = saved || PLACEHOLDER;
 
 img.addEventListener('click', () => fileInput?.click());
 
+// Campos do formulário
+const inputNome = document.getElementById('nome');
+const inputEmail = document.getElementById('email');
+const inputCel = document.getElementById('cel');
+const saveBtn = document.getElementById('saveProfileBtn');
+const PROFILE_KEY = 'profileData';
+
+// Salva perfil e retorna para a home
+saveBtn?.addEventListener('click', () => {
+  const nome = (inputNome?.value || '').trim();
+  const email = (inputEmail?.value || '').trim();
+  const cel = (inputCel?.value || '').trim();
+
+  if (!nome) return alert('Informe seu nome.');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return alert('Informe um e-mail válido.');
+  if (cel.length < 8) return alert('Informe um celular válido.');
+
+  const data = { nome, email, cel };
+  localStorage.setItem(PROFILE_KEY, JSON.stringify(data));
+
+  alert('Perfil salvo com sucesso!');
+  // perfil está em pages/, usar caminho relativo para home
+  window.location.href = './home.html';
+});
+
 fileInput?.addEventListener('change', async (e) => {
   const file = e.target.files?.[0];
   if (!file) return;
 
-  
-  const allowed = ['image/jpeg','image/png','image/webp','image/jpg','image/heic','image/heif'];
+
+  const allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/jpg', 'image/heic', 'image/heif'];
   if (!allowed.includes(file.type) && !file.type.startsWith('image/')) {
     alert('Escolha uma imagem (jpg, png ou webp).');
     return;
   }
-  if (file.size > 5 * 1024 * 1024) { 
+  if (file.size > 5 * 1024 * 1024) {
     alert('Arquivo muito grande. Escolha uma imagem até 5MB.');
     return;
   }
 
   try {
-    
+
     const dataUrl = await resizeAndCropToSquare(file, 256);
     img.src = dataUrl;
     localStorage.setItem(LS_KEY, dataUrl);
@@ -35,7 +60,7 @@ fileInput?.addEventListener('change', async (e) => {
     console.error(err);
     alert('Não foi possível processar a imagem.');
   } finally {
-    fileInput.value = ''; 
+    fileInput.value = '';
   }
 });
 
@@ -49,7 +74,7 @@ removeBtn?.addEventListener('click', () => {
 function loadImage(fileOrUrl) {
   return new Promise((resolve, reject) => {
     const img = new Image();
-    img.onload  = () => resolve(img);
+    img.onload = () => resolve(img);
     img.onerror = reject;
     if (fileOrUrl instanceof File) {
       const url = URL.createObjectURL(fileOrUrl);
@@ -70,20 +95,20 @@ function loadImage(fileOrUrl) {
 async function resizeAndCropToSquare(file, size = 256) {
   const image = await loadImage(file);
 
-  
+
   const srcSize = Math.min(image.naturalWidth || image.width, image.naturalHeight || image.height);
-  const sx = ((image.naturalWidth || image.width)  - srcSize) / 2;
+  const sx = ((image.naturalWidth || image.width) - srcSize) / 2;
   const sy = ((image.naturalHeight || image.height) - srcSize) / 2;
 
- 
+
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   canvas.width = size;
   canvas.height = size;
-  
+
   ctx.drawImage(image, sx, sy, srcSize, srcSize, 0, 0, size, size);
 
-  
+
   let dataUrl = '';
   try {
     dataUrl = canvas.toDataURL('image/webp', 0.9);
