@@ -1,266 +1,180 @@
 body,
 .name,
 .ranking-lista li span {
-    font-family: 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif;
+}
 
-    /* Topo laranja ranking */
-    .ranking-header {
-        background-color: #FF6A00;
-        color: white;
-        text-align: center;
-        padding: 15px 0;
-        border-bottom-left-radius: 50% 100px;
-        border-bottom-right-radius: 50% 100px;
-        width: 450px;
-        margin: 0 auto;
-    }
+.ranking {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 16px 12px 24px;
+  margin: 0 auto;
+}
 
-    .ranking-header h2 {
-        margin: 0;
-        font-weight: bold;
-    }
+.top3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: end;
+  gap: 12px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 8px;
+  padding: 0 8px;
+}
 
-    .ranking-top {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 10px;
-    }
+.place {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
 
-    .botão-voltar {
-        position: absolute;
-        left: 20px;
-        background: none;
-        border: none;
-        font-size: 1.8rem;
-        color: #D9D9D9;
-        cursor: pointer;
-    }
+.avatar {
+  position: relative; display: grid; place-items: center; }
 
-    .ranking {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 60px;
-    }
+.avatar img {
+  width: clamp(64px, 22vw, 110px);
+  height: clamp(64px, 22vw, 110px);
+  border-radius: 50%;
+  object-fit: cover;
+}
 
-    /* --- top 3 do ranking */
-    .top3 {
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        gap: 20px;
-    }
+.first .avatar img {
+  width: clamp(72px, 24vw, 120px);
+  height: clamp(72px, 24vw, 120px);
+}
 
-    .place {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-    }
+.crown {
+  position: absolute;
+  bottom: calc(100% - 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(18px, 7vw, 32px);
+  z-index: 3;
+  pointer-events: none;
+}
 
-    .avatar {
-        position: relative;
-    }
+.first .crown {
+  width: clamp(22px, 9vw, 40px);
+  bottom: calc(100% - 35px); /* abaixa só a coroa do 1º lugar */
+}
 
-    .avatar img {
-        border-radius: 50%;
-        width: 130px;
-        height: 130px;
-        object-fit: cover;
-    }
+.name {
+  margin-top: 6px;
+  background: #D9D9D9;
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: clamp(12px, 3.2vw, 16px);
+  text-align: center;
+  max-width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-    .crown {
-        position: absolute;
-        top: -90px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 20px;
-        /* menor */
-        z-index: 2;
-    }
+.podium {
+  margin-top: 6px;
+  width: clamp(64px, 22vw, 110px);
+  height: clamp(120px, 36vw, 210px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: #fff;
+  background: linear-gradient(180deg, #FA8A2E 0%, #FA8001 70%, #FA8001 100%);
+  position: relative;
+  border-radius: 6px;
+  padding-bottom: 6px;
+}
 
-    .podium {
-        margin-top: 5px;
-        width: 120px;
-        height: 300px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 1.5rem;
-        color: white;
-        padding-bottom: 5px;
-        background: linear-gradient(to top, white, #FA8001 100%);
-    }
+.first-podium { height: clamp(140px, 40vw, 230px); }
+.second-podium { height: clamp(120px, 34vw, 190px); }
+.third-podium { height: clamp(120px, 34vw, 190px); }
 
-    .first-podium {
-        height: 220px;
-    }
+.podium-number {
+  position: absolute;
+  bottom: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(16px, 5vw, 24px);
+}
 
-    .second-podium {
-        height: 170px;
-    }
+.first { order: 2; }
+.second { order: 1; }
+.third  { order: 3; }
 
-    .third-podium {
-        height: 170px;
-    }
+.ranking-separador {
+  width: 100%;
+  max-width: 800px;
+  height: 0;
+  margin: 12px auto;
+  background: transparent;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
 
-    .podium-number {
-        position: absolute;
-        font-family: 'Montserrat', sans-serif;
-    }
+.ranking-lista {
+  width: 100%;
+  max-width: 800px;
+  max-height: 52vh;
+  overflow-y: auto;
+  margin-top: 8px;
+  padding: 6px;
+}
 
-    .first-podium .podium-number {
-        top: 220px;
-        font-size: 2.8rem;
-    }
+.ranking-lista ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-    .second-podium .podium-number {
-        top: 200px;
-        font-size: 2.5rem;
-    }
+.ranking-lista li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  background: none;
+  border: none;
+}
 
-    .third-podium .podium-number {
-        top: 200px;
-        font-size: 2.5rem;
-    }
+.ranking-lista .position {
+  color: #FF3300;
+  width: 22px;
+  font-weight: 700;
+  text-align: right;
+  flex: 0 0 22px;
+}
 
-    .name {
-        margin-top: 8px;
-        background: #D9D9D9;
-        /* fundo inteiro cinza */
-        color: black;
-        padding: 6px 20px;
-        border-radius: 12px;
-        font-size: 1.5rem;
-        font-weight: 500;
-    }
+.ranking-lista li img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex: 0 0 40px;
+}
 
-    .place img {
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
+.ranking-lista .name {
+  background: #D9D9D9;
+  padding: 10px 12px;
+  border-radius: 32px;
+  flex: 1 1 auto;
+  text-align: center;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-    .ranking-separador {
-        width: 100%;
-        max-width: 800px;
-        height: 20px #333;
-        background: white;
-        margin: 2px auto;
-    }
+.ranking-lista li span {
+  font-size: 16px;
+  font-weight: 600;
+}
 
-    .ranking-lista::-webkit-scrollbar {
-        width: 2px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    .ranking-lista::-webkit-scrollbar-track {
-        background: #f0f0f0;
-        /* cor de fundo */
-        border-radius: 10px;
-    }
-
-    .ranking-lista::-webkit-scrollbar-thumb {
-        background: #FF3300;
-        border-radius: 10px;
-    }
-
-    .ranking-lista::-webkit-scrollbar-thumb:hover {
-        background: #FF3300;
-    }
-
-    .first {
-        order: 2;
-    }
-
-    .second {
-        order: 1;
-    }
-
-    .third {
-        order: 3;
-    }
-
-    /* -- resto da lista --*/
-
-    .ranking-lista {
-        width: 100%;
-        max-width: 800px;
-        max-height: 350px;
-        overflow-y: auto;
-        margin-top: 0;
-        padding: 5px;
-        top: 15px;
-    }
-
-    .ranking-lista ol {
-        top: 5px;
-        position: absolute;
-        font-family: 'Montserrat', sans-serif;
-        margin: 0;
-        padding-left: 20px;
-        list-style-position: outside;
-    }
-
-    .ranking-lista ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    .ranking-lista li {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 5px;
-        max-width: 500px;
-        margin-left: auto;
-        margin-right: auto;
-        background: none;
-        border: none;
-    }
-
-    .ranking-lista .position {
-        color: #FF3300;
-        width: 15px;
-        font-weight: 700;
-        text-align: right;
-    }
-
-    .ranking-lista li img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
-
-    .ranking-lista .name {
-        font-family: 'Inter', sans-serif;
-        background: #D9D9D9;
-        padding: 8px 10px;
-        border-radius: 32px;
-        flex: 1;
-        text-align: center;
-        font-size: 0.95rem;
-    }
-
-    .ranking-lista li span {
-        font-size: 18px;
-        font-weight: 600;
-    }
-
-    .first img {
-        width: 150px;
-        height: 150px;
-    }
-
-    .second img,
-    .third img {
-        width: 130px;
-        height: 130px;
-    }
+@media (max-width: 360px) {
+  .top3 { gap: 8px; padding: 0 6px; }
+  .name { max-width: 95%; }
+  .ranking-lista .name { font-size: 0.9rem; }
 }

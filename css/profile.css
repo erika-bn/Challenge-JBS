@@ -338,3 +338,30 @@
 .profile__avatar {
   cursor: pointer;
 }
+
+.profile__card { display:flex; flex-direction:column; gap:14px; }
+.profile__fields, .profile__actions { display:flex; flex-direction:column; gap:12px; }
+
+.profile__btn,
+.login__btn {
+  display:block;
+  width:100%;
+  position:static !important;
+  transform:none !important;
+  margin:0 !important;
+}
+
+.profile__btn + .login__btn,
+.login__btn + .profile__btn { margin-top:12px !important; }
+
+
+.profile__btn,
+.login__btn { box-shadow: 0 8px 20px rgba(0,0,0,.08); }
+.profile__btn:active,
+.login__btn:active { transform:none; }
+
+
+@media (max-width:480px){
+  .profile__card{ gap:16px; }
+  .profile__fields, .profile__actions{ gap:14px; }
+}
